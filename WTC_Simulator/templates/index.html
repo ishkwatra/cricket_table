@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTC Standings Simulator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>WTC Standings Simulator</h1>
+
+        <!-- Current Standings Table -->
+        <section id="standings">
+            <h2>Current Standings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>Matches</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>Points</th>
+                        <th>PCT (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="standings-body">
+                    <!-- Dynamically populated rows -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Remaining Matches -->
+        <section id="matches">
+            <h2>Remaining Matches</h2>
+            <div id="matches-list">
+                <!-- Dynamically generated match list -->
+            </div>
+        </section>
+
+        <!-- Update Button -->
+        <button id="update-button">Update Standings</button>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
