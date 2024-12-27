@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let data = null;
 
     // Fetch initial data
-    fetch("/data") // changed from-> fetch("/")
+    fetch("/data") // changed from -> fetch("/")
         .then(response => response.json())
         .then(initData => {
             data = initData;
@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${team.matches}</td>
                 <td>${team.wins}</td>
                 <td>${team.losses}</td>
+                <td>${team.tie}</td>
+                <td>${team.ded}</td>
                 <td>${team.points}</td>
                 <td>${team.pct}%</td>
             `;
@@ -56,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const outcomes = Array.from(document.querySelectorAll(".match-outcome")).map(select => select.value);
 
         if (outcomes.includes("none")) {
-            alert("Please select outcomes for all matches.");
-            return;
+            //alert("Please select outcomes for all matches.");
+            //return;
         }
 
         fetch("/update", {
