@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let data = null;
 
     // Fetch initial data
-    fetch("/")
+    fetch("/data") // changed from-> fetch("/")
         .then(response => response.json())
         .then(initData => {
             data = initData;
