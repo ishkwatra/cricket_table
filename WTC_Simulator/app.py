@@ -86,6 +86,8 @@ def simulate_outcomes(table, remaining_matches, outcomes):
     ]
 
     for i, outcome in enumerate(outcomes):
+        if outcome == "none":
+            continue
         team1 = remaining_matches[i]['team1']
         team11 = 0
         for x in table:
