@@ -3,13 +3,14 @@ import json
 
 app = Flask(__name__)
 
+
 # Current standings data
 table_org = [
-    {"name": "South Africa", "matches": 10, "wins": 6,
+    {"name": "South Africa", "matches": 11, "wins": 7,
         "losses": 3, "tie": 1, "ded": 0, "points": 0, "pct": 0},
-    {"name": "Australia", "matches": 15, "wins": 9, "losses": 4,
+    {"name": "Australia", "matches": 16, "wins": 10, "losses": 4,
         "tie": 2, "ded": 10, "points": 0, "pct": 0},
-    {"name": "India", "matches": 17, "wins": 9, "losses": 6,
+    {"name": "India", "matches": 18, "wins": 9, "losses": 7,
         "tie": 2, "ded": 2, "points": 0, "pct": 0},
     {"name": "New Zealand", "matches": 14, "wins": 7,
         "losses": 7, "tie": 0, "ded": 3, "points": 0, "pct": 0},
@@ -17,10 +18,10 @@ table_org = [
         "losses": 6, "tie": 0, "ded": 0, "points": 0, "pct": 0},
     {"name": "England", "matches": 22, "wins": 11, "losses": 10,
         "tie": 1, "ded": 22, "points": 0, "pct": 0},
-    {"name": "Pakistan", "matches": 10, "wins": 4, "losses": 6,
-        "tie": 0, "ded": 8, "points": 0, "pct": 0},
     {"name": "Bangladesh", "matches": 12, "wins": 4,
         "losses": 8, "tie": 0, "ded": 3, "points": 0, "pct": 0},
+    {"name": "Pakistan", "matches": 11, "wins": 4, "losses": 7,
+        "tie": 0, "ded": 8, "points": 0, "pct": 0},
     {"name": "West Indies", "matches": 11, "wins": 2,
         "losses": 7, "tie": 2, "ded": 0, "points": 0, "pct": 0}
 ]
@@ -41,12 +42,11 @@ table = [
     table_org[8].copy(),
 ]
 remaining_matches = [
-    {"team1": "South Africa", "team2": "Pakistan"},
-    {"team1": "South Africa", "team2": "Pakistan"},
-    {"team1": "Australia", "team2": "India"},
+
     {"team1": "Australia", "team2": "India"},
     {"team1": "Australia", "team2": "Sri Lanka"},
     {"team1": "Australia", "team2": "Sri Lanka"},
+    {"team1": "Pakistan", "team2": "South Africa"},
     {"team1": "Pakistan", "team2": "West Indies"},
     {"team1": "Pakistan", "team2": "West Indies"},
 ]
@@ -127,6 +127,30 @@ def simulate_outcomes(table, remaining_matches, outcomes):
     sorted_teams = sorted(table, key=lambda x: x['pct'], reverse=True)
     return {"teams": sorted_teams}
 
+
+'''
+# temp
+@ app.route('/temp', methods=['POST'])
+def temp():
+    team11 = 0
+    for x in table_org:
+        if x['name'] == "India":
+            break
+        else:
+            team11 += 1
+    table_org[team11]['ded'] += 0
+
+    # Calculate percentages
+    for team in table_org:
+        matches = team['matches']
+        team['points'] = team['wins']*12+team['tie']*4-team['ded']
+        team['pct'] = round((team['points'] / (matches * 12))
+                            * 100, 2) if matches > 0 else 0
+    # sort again
+    sorted_teams = sorted(table_org, key=lambda x: x['pct'], reverse=True)
+    updated = {"teams": sorted_teams}
+    return jsonify(updated)
+'''
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
