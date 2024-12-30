@@ -2,11 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const standingsBody = document.getElementById("standings-body");
     const matchesList = document.getElementById("matches-list");
     const updateButton = document.getElementById("update-button");
+    const tempButton = document.getElementById("temp-button");
 
     let data = null;
 
     // Fetch initial data
-    fetch("/data") // changed from -> fetch("/")
+    fetch("/data")
         .then(response => response.json())
         .then(initData => {
             data = initData;
@@ -75,4 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error("Error updating standings:", error));
     });
+
+    /*
+    // temp button click
+    tempButton.addEventListener("click", () => {
+        fetch("/temp", {
+            method: "POST",
+        })
+            .then(response => response.json())
+            .then(updatedData => {
+                renderStandings(updatedData.teams);
+            })
+            .catch(error => console.error("Error updating standings:", error));
+    });
+    */
+
 });
